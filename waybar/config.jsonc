@@ -1,0 +1,188 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "output": "DP-1",
+    "layer": "top",
+     //"width": 2500,
+    "margin-top": 8,
+    "height": 24,
+    "margin-left": 20,
+    "margin-bottom": 0,
+    "margin-right": 20,
+    "exclusive": true,
+    "position": "top",
+    //"margin-top": 0,
+    //"margin-left": 0,
+    //"margin-bottom": 0,
+    //"margin-right": 0,
+    
+    
+    //"height": 40, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 3, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "custom/menu",
+        "niri/workspaces",
+        "niri/window"
+
+    ],
+    "modules-center": [
+        "clock"       
+    ],
+
+    "modules-right": [
+        "cpu",
+        "memory",
+        "temperature",
+        "sway/language",     
+        "tray",
+        "pulseaudio",
+        "custom/hyprPicker",
+        "niri/language",
+        "custom/power"
+        
+    ],
+
+    "custom/menu": {
+        "format": "{icon}",
+        "format-icons": "",
+        "on-click": "fuzzel",
+        "escape": true,
+        "tooltip": false
+},
+
+    "niri/window": {
+	"format": "{app_id}",
+        "separate-outputs": true,
+        "on-click": "fuzzel",
+        "on-click-right": "niri msg action close-window",
+        "on-click-middle": "niri msg action switch-preset-window-width"	
+},
+
+        "niri/language": {
+        "format": "{}",
+        "format-en": "EN",
+        "format-ru": "RU"       
+    },
+
+    "niri/workspaces": {
+	"disable-scroll": false,
+        "on-click": "activate",
+        "all-outputs": true,
+        "active-only": true,
+        "format": "{icon}",
+        "format-icons": {
+      //"1": "",
+      //"2": "",
+      //"3": "",
+      //"4": "",
+      //"5": "",
+      //"6": "",
+      //"7": "",
+      //"8": "",
+      //"9": "",
+      //"10": "",
+        "focused": "󰮯 ",
+        "default": "󰊠",
+        "empty": ""
+    }
+},
+
+    "tray": {
+        "icon-size": 12,
+        "spacing": 5
+        // "icons": {
+        //   "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        // }
+    },
+
+    "clock": {
+    "interval": 1,
+    "format": "  {:%u %B %d %Y,   %H:%M:%S}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+        "mode": "month",
+        "format": {
+        "months": "<span color='#cdd6f4'><b>{}</b></span>",
+        "days": "<span color='#cdd6f4'><b>{}</b></span>",
+        "weeks": "<span color='#cdd6f4'><b>W{}</b></span>",
+        "weekdays": "<span color='#cdd6f4'><b>{}</b></span>",
+        "today": "<span color='#f38ba8'><b>{}</b></span>"
+        }
+    }
+    },
+
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}%  "
+    },
+
+    "temperature": {
+    // "thermal-zone": 2,
+    "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input",
+    // "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C ",
+    "format-icons": ["", "", ""]
+},
+
+	"network": {
+		"format": "{icon}",
+		"format-disconnected": "󰖪",
+		"format-ethernet": "󰈀 /{ifname}",
+		"format-icons": [
+			"󰤯",
+			"󰤟",
+			"󰤢",
+			"󰤥",
+			"󰤨"
+		],
+		"format-linked": "󰖩",
+		"format-wifi": "{icon}",
+		"interval": 30,
+		"on-click": "nm-connection-editor",
+		"on-click-right": "rfkill toggle wifi",
+		"tooltip": true,
+		"tooltip-format": "interface:\t{ifname}\n\nconnected to {essid} at {signalStrength}% strength",
+		"tooltip-format-disconnected": "interface: {ifname}\nconnected to {essid}\nat {signalStrength}% strength"
+	},
+
+	"pulseaudio": {
+		"format": "{icon}",
+		"format-bluetooth": "{icon}",
+		"format-icons": {
+		"default": [
+			"",
+			"",
+			""
+			]
+		},
+		"format-muted": "󰖁",
+		"on-click": "pavucontrol",
+		"on-click-right": "pactl set-sink-mute 0 toggle",
+		"scroll-step": 1,
+		"tooltip-format": "{desc}\t{icon}{volume}%"
+	},
+
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wlogout"       
+    },
+
+    "custom/hyprPicker": {
+        "format": "󰌁",
+        "on-click": "hyprpicker -a",
+        "signal": 1
+        },
+        
+    "escape": true
+
+}
+
